@@ -1,7 +1,5 @@
 # Dell PowerStore MCP Server
-
-[![CI](https://github.com/sachdev27/powerstore-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/sachdev27/powerstore-mcp-server/actions/workflows/ci.yml)
-[![Python Version](https://img.shields.io/pypi/pyversions/powerstore-mcp-server.svg)](https://pypi.org/project/powerstore-mcp-server/)
+[![Python Version](https://img.shields.io/pypi/pyversions/powerstore-mcp-server.svg)](https://pypi.org/project/dell-powerstore-mcp-server/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -53,7 +51,7 @@ powerstore-mcp
 ### From PyPI (Recommended)
 
 ```bash
-pip install powerstore-mcp-server
+pip install dell-powerstore-mcp-server
 ```
 
 ### From Source
