@@ -1,0 +1,427 @@
+{
+  "rootFolder": "/Users/sachdevs/Projects/mcp-server",
+  "analyzedAt": "2025-12-08T14:12:43.106Z",
+  "rootStructure": [
+    {
+      "name": ".github",
+      "type": "dir"
+    },
+    {
+      "name": ".gitignore",
+      "type": "file",
+      "size": 1254,
+      "lines": 125
+    },
+    {
+      "name": "CHANGELOG.md",
+      "type": "file",
+      "size": 1718,
+      "lines": 68
+    },
+    {
+      "name": "CONTRIBUTING.md",
+      "type": "file",
+      "size": 9271,
+      "lines": 422
+    },
+    {
+      "name": "Dockerfile",
+      "type": "file",
+      "size": 3672,
+      "lines": 104
+    },
+    {
+      "name": "LICENSE",
+      "type": "file",
+      "size": 1064,
+      "lines": 22
+    },
+    {
+      "name": "Makefile",
+      "type": "file",
+      "size": 4694,
+      "lines": 165
+    },
+    {
+      "name": "README.md",
+      "type": "file",
+      "size": 10535,
+      "lines": 379
+    },
+    {
+      "name": "docker-compose.yml",
+      "type": "file",
+      "size": 1759,
+      "lines": 61
+    },
+    {
+      "name": "logs",
+      "type": "dir"
+    },
+    {
+      "name": "openapi.json",
+      "type": "file",
+      "size": 2592391,
+      "lines": 63010
+    },
+    {
+      "name": "powerstore_mcp",
+      "type": "dir"
+    },
+    {
+      "name": "pyproject.toml",
+      "type": "file",
+      "size": 5803,
+      "lines": 226
+    },
+    {
+      "name": "requirements-dev.txt",
+      "type": "file",
+      "size": 756,
+      "lines": 36
+    },
+    {
+      "name": "requirements.txt",
+      "type": "file",
+      "size": 697,
+      "lines": 27
+    },
+    {
+      "name": "start-http.sh",
+      "type": "file",
+      "size": 574,
+      "lines": 23
+    },
+    {
+      "name": "start-python.sh",
+      "type": "file",
+      "size": 1361,
+      "lines": 58
+    },
+    {
+      "name": "tests",
+      "type": "dir"
+    }
+  ],
+  "rootFileSnippets": {
+    "CHANGELOG.md": [
+      "# Changelog",
+      "",
+      "All notable changes to this project will be documented in this file.",
+      "",
+      "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),",
+      "and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).",
+      "",
+      "## [Unreleased]",
+      "",
+      "### Added"
+    ],
+    "CONTRIBUTING.md": [
+      "# Contributing to PowerStore MCP Server",
+      "",
+      "Thank you for your interest in contributing to the PowerStore MCP Server! This document provides guidelines and instructions for contributing.",
+      "",
+      "## 📋 Table of Contents",
+      "",
+      "- [Code of Conduct](#code-of-conduct)",
+      "- [Getting Started](#getting-started)",
+      "- [Development Setup](#development-setup)",
+      "- [Making Changes](#making-changes)"
+    ],
+    "Dockerfile": [
+      "# syntax=docker/dockerfile:1",
+      "",
+      "# =============================================================================",
+      "# Dell PowerStore MCP Server - Production Dockerfile",
+      "# Multi-stage build for optimal image size and security",
+      "# =============================================================================",
+      "",
+      "# -----------------------------------------------------------------------------",
+      "# Stage 1: Builder - Install dependencies and build wheel",
+      "# -----------------------------------------------------------------------------"
+    ],
+    "LICENSE": [
+      "MIT License",
+      "",
+      "Copyright (c) 2025 sachdev27",
+      "",
+      "Permission is hereby granted, free of charge, to any person obtaining a copy",
+      "of this software and associated documentation files (the \"Software\"), to deal",
+      "in the Software without restriction, including without limitation the rights",
+      "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell",
+      "copies of the Software, and to permit persons to whom the Software is",
+      "furnished to do so, subject to the following conditions:"
+    ],
+    "Makefile": [
+      "# =============================================================================",
+      "# Dell PowerStore MCP Server - Makefile",
+      "# Common development commands",
+      "# =============================================================================",
+      "",
+      ".PHONY: help install install-dev test test-cov lint format typecheck security clean build docker-build docker-run run run-http docs",
+      "",
+      "# Default target",
+      "help:",
+      "@echo \"Dell PowerStore MCP Server - Development Commands\""
+    ],
+    "README.md": [
+      "# Dell PowerStore MCP Server",
+      "",
+      "[![CI](https://github.com/sachdev27/powerstore-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/sachdev27/powerstore-mcp-server/actions/workflows/ci.yml)",
+      "[![Python Version](https://img.shields.io/pypi/pyversions/powerstore-mcp-server.svg)](https://pypi.org/project/powerstore-mcp-server/)",
+      "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
+      "[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)",
+      "[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)",
+      "",
+      "A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for Dell PowerStore that automatically generates tools from OpenAPI specifications with a credential-free architecture. Enables AI assistants like Claude and automation platforms like n8n to interact with PowerStore storage arrays.",
+      ""
+    ],
+    "docker-compose.yml": [
+      "version: '3.8'",
+      "",
+      "services:",
+      "# ==========================================================================",
+      "# Dell PowerStore MCP Server - Python Implementation",
+      "# ==========================================================================",
+      "powerstore-mcp:",
+      "build:",
+      "context: .",
+      "dockerfile: Dockerfile"
+    ],
+    "openapi.json": [
+      "{",
+      "\"swagger\" : \"2.0\",",
+      "\"info\" : {",
+      "\"title\" : \"PowerStore REST API\",",
+      "\"description\" : \"Storage cluster REST API definition. ( For \\\"Try It Out\\\", use the cluster management IP address to load this swaggerui interface. )\",",
+      "\"version\" : \"4.0.0.0\",",
+      "\"license\" : {",
+      "\"name\" : \"End User License Agreement\",",
+      "\"url\" : \"/branding/locales/en-US/eula.txt\"",
+      "}"
+    ],
+    "pyproject.toml": [
+      "[build-system]",
+      "requires = [\"setuptools>=61.0\", \"wheel\"]",
+      "build-backend = \"setuptools.build_meta\"",
+      "",
+      "[project]",
+      "name = \"dell-powerstore-mcp-server\"",
+      "version = \"1.0.0\"",
+      "description = \"MCP Server for Dell PowerStore with automatic OpenAPI tool generation - Credential-free mode\"",
+      "readme = \"README.md\"",
+      "requires-python = \">=3.10\""
+    ],
+    "requirements-dev.txt": [
+      "# =============================================================================",
+      "# Dell PowerStore MCP Server - Development Dependencies",
+      "# =============================================================================",
+      "#",
+      "# Install with: pip install -r requirements-dev.txt",
+      "# Or use:       pip install -e \".[dev]\"",
+      "#",
+      "# =============================================================================",
+      "",
+      "# Include production dependencies"
+    ],
+    "requirements.txt": [
+      "# =============================================================================",
+      "# Dell PowerStore MCP Server - Production Dependencies",
+      "# =============================================================================",
+      "#",
+      "# For development dependencies, install with: pip install -e \".[dev]\"",
+      "# Or use: pip install -r requirements-dev.txt",
+      "#",
+      "# =============================================================================",
+      "",
+      "# MCP SDK"
+    ],
+    "start-http.sh": [
+      "#!/bin/bash",
+      "",
+      "# Start the PowerStore MCP server in HTTP/SSE mode for n8n",
+      "",
+      "# Activate virtual environment if it exists",
+      "if [ -d \".venv\" ]; then",
+      "source .venv/bin/activate",
+      "elif [ -d \"venv\" ]; then",
+      "source venv/bin/activate",
+      "fi"
+    ],
+    "start-python.sh": [
+      "#!/bin/bash",
+      "# Quick start script for Python implementation",
+      "",
+      "set -e",
+      "",
+      "echo \"🐍 Dell PowerStore MCP Server (Python)\"",
+      "echo \"======================================\"",
+      "echo \"\"",
+      "",
+      "# Check Python version"
+    ]
+  },
+  "importantFolders": [
+    {
+      "path": "tests",
+      "category": "tests",
+      "fileCount": 7,
+      "primaryLanguage": "Python"
+    }
+  ],
+  "readmeParagraphs": {
+    "root": "# Dell PowerStore MCP Server"
+  },
+  "totals": {
+    "numFiles": 38,
+    "numDirs": 10,
+    "totalSizeBytes": 3103492,
+    "totalLinesOfCode": 4512
+  },
+  "fileCategories": {
+    "other": 8,
+    "config": 6,
+    "documentation": 5,
+    "build": 1,
+    "source": 18
+  },
+  "linesOfCodePerLanguage": {
+    "Python": 4431,
+    "Shell": 81
+  },
+  "filesPerLanguage": {
+    "Python": 16,
+    "Shell": 2
+  },
+  "projectTypes": [
+    "Python",
+    "Python (requirements)"
+  ],
+  "frameworks": [],
+  "entryPoints": [
+    "start-http.sh",
+    "start-python.sh"
+  ],
+  "ciCdTools": [
+    "GitHub Actions",
+    "Docker"
+  ],
+  "packageManagers": [
+    "pip"
+  ],
+  "topLevelDirectories": [
+    {
+      "name": "powerstore_mcp",
+      "numFiles": 9,
+      "totalLoc": 2961,
+      "dominantLanguage": "Python"
+    },
+    {
+      "name": "tests",
+      "numFiles": 7,
+      "totalLoc": 1470,
+      "dominantLanguage": "Python"
+    },
+    {
+      "name": "logs",
+      "numFiles": 2,
+      "totalLoc": 0
+    }
+  ],
+  "detailedDirectories": [
+    {
+      "path": "powerstore_mcp",
+      "name": "powerstore_mcp",
+      "level": 1,
+      "numFiles": 9,
+      "totalLoc": 2961,
+      "dominantLanguage": "Python",
+      "category": "General",
+      "description": "General module with 9 files (Python)",
+      "subdirectories": []
+    },
+    {
+      "path": "tests",
+      "name": "tests",
+      "level": 1,
+      "numFiles": 7,
+      "totalLoc": 1470,
+      "dominantLanguage": "Python",
+      "category": "Testing",
+      "description": "Testing module with 7 files (Python)",
+      "subdirectories": []
+    },
+    {
+      "path": "logs",
+      "name": "logs",
+      "level": 1,
+      "numFiles": 2,
+      "totalLoc": 0,
+      "category": "General",
+      "description": "General module with 2 files",
+      "subdirectories": []
+    }
+  ],
+  "architecturalInsights": {
+    "coreApplications": [],
+    "entryPointDetails": [
+      {
+        "path": "../../../../start-http.sh",
+        "type": "Unknown",
+        "description": ""
+      },
+      {
+        "path": "../../../../start-python.sh",
+        "type": "Unknown",
+        "description": ""
+      }
+    ],
+    "serviceArchitecture": {
+      "microservices": [],
+      "monoliths": [],
+      "libraries": []
+    },
+    "layeredArchitecture": {
+      "presentation": [],
+      "business": [],
+      "data": [],
+      "infrastructure": []
+    }
+  },
+  "largeFiles": [
+    {
+      "path": "openapi.json",
+      "sizeMb": 2.47
+    }
+  ],
+  "dependencies": {
+    "production": [
+      "mcp",
+      "httpx",
+      "pydantic",
+      "python-dotenv",
+      "pyyaml",
+      "starlette",
+      "uvicorn[standard]",
+      "tenacity"
+    ],
+    "development": [],
+    "total": 8
+  },
+  "complexity": {
+    "averageFileSize": 118.73684210526316,
+    "maxFileSize": 25899.827200000003,
+    "nestedDepth": 0,
+    "estimatedComplexity": "low"
+  },
+  "gitRepo": {
+    "firstCommitDate": "2025-12-08",
+    "totalCommits": 9,
+    "numContributors": 0,
+    "currentBranch": "main",
+    "remoteUrls": [
+      "https://github.com/sachdev27/dell-powerstore-mcp-server.git"
+    ]
+  },
+  "license": "MIT"
+}

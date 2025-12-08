@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+*.egg
+
+# Build output
+build/
+dist/
+
+# Development files
+.env
+.env.local
+.env.*.local
+*.log
+logs/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Type checking & linting
+.mypy_cache/
+.ruff_cache/
+
+# Documentation (except README)
+*.md
+!README.md
+
+# CI/CD
+.github/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Pre-commit
+.pre-commit-config.yaml
+
+# Development tools
+Makefile
+requirements-dev.txt

@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # Dell PowerStore MCP Server - Python Implementation
+  # ==========================================================================
+  powerstore-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: powerstore-mcp-server:latest
+    container_name: powerstore-mcp
+    ports:
+      - "3000:3000"
+    environment:
+      - LOG_LEVEL=info
+      - LOG_FORMAT=json
+      - HTTP_HOST=0.0.0.0
+      - HTTP_PORT=3000
+    volumes:
+      # Mount OpenAPI spec (read-only)
+      - ./openapi.json:/app/openapi.json:ro
+      # Persist logs
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; r = httpx.get('http://localhost:3000/health', timeout=5); exit(0 if r.status_code == 200 else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    # Resource limits for production
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+
+# ==========================================================================
+# Networks (optional - for more complex deployments)
+# ==========================================================================
+networks:
+  default:
+    name: powerstore-mcp-network
+
+# ==========================================================================
+# Volumes (optional - for persistent storage)
+# ==========================================================================
+volumes:
+  logs:
+    driver: local
