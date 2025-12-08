@@ -1,0 +1,28 @@
+# Include essential files
+include LICENSE
+include README.md
+include CHANGELOG.md
+include CONTRIBUTING.md
+include ARCHITECTURE.md
+include requirements.txt
+include requirements-dev.txt
+
+# Include py.typed marker for PEP 561
+include powerstore_mcp/py.typed
+
+# Exclude development and build files
+exclude .env
+exclude .env.example
+exclude openapi.json
+exclude system_prompt.md
+exclude doc.log
+exclude overview.json
+
+# Exclude directories
+prune .github
+prune .venv
+prune tests
+prune logs
+prune dist
+prune build
+prune *.egg-info
