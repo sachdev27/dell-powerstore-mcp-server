@@ -123,7 +123,7 @@ class TestToolExecution:
         mock_config: Config,
         sample_alert_response: list[dict[str, Any]],
     ) -> None:
-        """Test successful tool execution."""
+        """Test successful tool execution returns CallToolResult with isError=False."""
         server = PowerStoreMCPServer(mock_config)
         await server.initialize()
 
@@ -143,9 +143,47 @@ class TestToolExecution:
                 },
             )
 
-        assert len(result) == 1
-        assert result[0].type == "text"
-        assert "alert-001" in result[0].text
+        # Per MCP spec, result is now CallToolResult with content and isError
+        assert result.isError is False
+        assert len(result.content) == 1
+        assert result.content[0].type == "text"
+        assert "alert-001" in result.content[0].text
+
+    @pytest.mark.asyncio
+    async def test_execute_tool_api_error_returns_isError_true(
+        self,
+        mock_config: Config,
+    ) -> None:
+        """Test that API errors return CallToolResult with isError=True per MCP spec."""
+        from powerstore_mcp.exceptions import PowerStoreAPIError
+
+        server = PowerStoreMCPServer(mock_config)
+        await server.initialize()
+
+        with patch("powerstore_mcp.server.PowerStoreAPIClient") as mock_client_class:
+            mock_client = AsyncMock()
+            mock_client.execute_operation = AsyncMock(
+                side_effect=PowerStoreAPIError("Connection failed", status_code=500)
+            )
+            # Set up proper async context manager behavior
+            mock_client_class.return_value.__aenter__ = AsyncMock(return_value=mock_client)
+            mock_client_class.return_value.__aexit__ = AsyncMock(return_value=None)
+
+            result = await server._execute_tool(
+                "getAlert",
+                {
+                    "host": "example.com",
+                    "username": "admin",
+                    "password": "secret",
+                },
+            )
+
+        # Per MCP spec, tool execution errors return isError=True (not raised as exceptions)
+        assert result.isError is True
+        assert len(result.content) == 1
+        assert result.content[0].type == "text"
+        assert "PowerStoreAPIError" in result.content[0].text
+        assert "Connection failed" in result.content[0].text
 
 
 class TestParameterFiltering:

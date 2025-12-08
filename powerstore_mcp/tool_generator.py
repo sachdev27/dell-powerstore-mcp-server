@@ -432,6 +432,7 @@ class ToolGenerator:
             "type": "object",
             "properties": properties,
             "required": required,
+            "additionalProperties": False,
         }
 
     def _convert_openapi_type(self, openapi_type: str) -> str:

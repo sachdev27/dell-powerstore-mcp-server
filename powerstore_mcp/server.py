@@ -175,20 +175,23 @@ class PowerStoreMCPServer:
         async def handle_call_tool(
             name: str,
             arguments: dict[str, Any] | None,
-        ) -> list[types.TextContent | types.ImageContent | types.EmbeddedResource]:
+        ) -> types.CallToolResult:
             """Execute a tool with per-request credentials.
+
+            Per MCP spec, tool execution errors are returned with isError=True
+            rather than raised as exceptions. This allows the LLM to understand
+            the error and potentially self-correct.
 
             Args:
                 name: Tool name.
                 arguments: Tool arguments including host, username, password.
 
             Returns:
-                Tool execution result as text content.
+                CallToolResult with content and isError flag.
 
-            Raises:
-                InvalidToolArgumentsError: If required arguments are missing.
-                ToolNotFoundError: If the tool doesn't exist.
-                ToolExecutionError: If tool execution fails.
+            Note:
+                Protocol errors (invalid params, unknown tool) are still raised
+                as exceptions per MCP spec. Tool execution errors return isError=True.
             """
             return await self._execute_tool(name, arguments)
 
@@ -196,20 +199,23 @@ class PowerStoreMCPServer:
         self,
         name: str,
         arguments: dict[str, Any] | None,
-    ) -> list[types.TextContent]:
+    ) -> types.CallToolResult:
         """Execute a tool with the given arguments.
+
+        Per MCP spec, this method distinguishes between:
+        - Protocol errors (invalid params, unknown tool): Raised as exceptions
+        - Tool execution errors (API failures): Returned with isError=True
 
         Args:
             name: Tool name.
             arguments: Tool arguments.
 
         Returns:
-            List containing the tool result as TextContent.
+            CallToolResult with content and isError flag.
 
         Raises:
-            InvalidToolArgumentsError: If required arguments are missing.
-            ToolNotFoundError: If the tool doesn't exist.
-            ToolExecutionError: If tool execution fails.
+            InvalidToolArgumentsError: If required arguments are missing (protocol error).
+            ToolNotFoundError: If the tool doesn't exist (protocol error).
         """
         if not arguments:
             raise InvalidToolArgumentsError(
@@ -278,26 +284,63 @@ class PowerStoreMCPServer:
 
                 logger.info(f"Successfully executed tool: {name}")
 
-                # Return result as text content
-                return [
-                    types.TextContent(
-                        type="text",
-                        text=json.dumps(result, indent=2),
-                    )
-                ]
+                # Return success result per MCP spec
+                return types.CallToolResult(
+                    content=[
+                        types.TextContent(
+                            type="text",
+                            text=json.dumps(result, indent=2),
+                        )
+                    ],
+                    isError=False,
+                )
 
         except PowerStoreAPIError as e:
+            # Per MCP spec: Tool execution errors return isError=True
+            # This allows the LLM to understand and potentially self-correct
             logger.error(
                 f"API error executing tool {name}: {e}",
                 extra={"tool": name, "error_type": type(e).__name__},
             )
-            raise ToolExecutionError(name, e) from e
+            error_details = {
+                "error": type(e).__name__,
+                "message": str(e),
+                "tool": name,
+            }
+            if hasattr(e, "status_code") and e.status_code:
+                error_details["status_code"] = e.status_code
+            if hasattr(e, "details") and e.details:
+                error_details["details"] = e.details
+
+            return types.CallToolResult(
+                content=[
+                    types.TextContent(
+                        type="text",
+                        text=json.dumps(error_details, indent=2),
+                    )
+                ],
+                isError=True,
+            )
         except Exception as e:
+            # Per MCP spec: Unexpected errors also return isError=True
             logger.error(
                 f"Unexpected error executing tool {name}: {e}",
                 extra={"tool": name, "error_type": type(e).__name__},
             )
-            raise ToolExecutionError(name, e) from e
+            error_details = {
+                "error": type(e).__name__,
+                "message": str(e),
+                "tool": name,
+            }
+            return types.CallToolResult(
+                content=[
+                    types.TextContent(
+                        type="text",
+                        text=json.dumps(error_details, indent=2),
+                    )
+                ],
+                isError=True,
+            )
 
     def _build_api_params(self, arguments: dict[str, Any]) -> dict[str, Any]:
         """Build API parameters from tool arguments.
