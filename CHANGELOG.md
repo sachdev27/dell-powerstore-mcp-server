@@ -63,5 +63,5 @@ When creating a new release, copy this template:
 - Security improvements
 ```
 
-[Unreleased]: https://github.com/sachdev27/powerstore-mcp-server/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/sachdev27/powerstore-mcp-server/releases/tag/v1.0.0
+[Unreleased]: https://github.com/sachdev27/dell-powerstore-mcp-server/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/sachdev27/dell-powerstore-mcp-server/releases/tag/v1.0.0

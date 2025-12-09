@@ -50,8 +50,8 @@ LABEL org.opencontainers.image.title="Dell PowerStore MCP Server" \
       org.opencontainers.image.version="1.0.0" \
       org.opencontainers.image.vendor="Dell Technologies" \
       org.opencontainers.image.licenses="MIT" \
-      org.opencontainers.image.source="https://github.com/sachdev27/powerstore-mcp-server" \
-      org.opencontainers.image.documentation="https://github.com/sachdev27/powerstore-mcp-server#readme"
+      org.opencontainers.image.source="https://github.com/sachdev27/dell-powerstore-mcp-server" \
+      org.opencontainers.image.documentation="https://github.com/sachdev27/dell-powerstore-mcp-server#readme"
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \

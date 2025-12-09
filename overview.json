@@ -1,6 +1,6 @@
 {
   "rootFolder": "/Users/sachdevs/Projects/mcp-server",
-  "analyzedAt": "2025-12-08T14:12:43.106Z",
+  "analyzedAt": "2025-12-09T06:00:15.089Z",
   "rootStructure": [
     {
       "name": ".github",
@@ -11,6 +11,12 @@
       "type": "file",
       "size": 1254,
       "lines": 125
+    },
+    {
+      "name": "ARCHITECTURE.md",
+      "type": "file",
+      "size": 53443,
+      "lines": 1483
     },
     {
       "name": "CHANGELOG.md",
@@ -33,8 +39,14 @@
     {
       "name": "LICENSE",
       "type": "file",
-      "size": 1064,
+      "size": 1066,
       "lines": 22
+    },
+    {
+      "name": "MANIFEST.in",
+      "type": "file",
+      "size": 523,
+      "lines": 29
     },
     {
       "name": "Makefile",
@@ -45,8 +57,26 @@
     {
       "name": "README.md",
       "type": "file",
-      "size": 10535,
+      "size": 10512,
       "lines": 379
+    },
+    {
+      "name": "build",
+      "type": "dir"
+    },
+    {
+      "name": "dell_powerstore_mcp_server.egg-info",
+      "type": "dir"
+    },
+    {
+      "name": "dist",
+      "type": "dir"
+    },
+    {
+      "name": "doc.log",
+      "type": "file",
+      "size": 461421,
+      "lines": 1717
     },
     {
       "name": "docker-compose.yml",
@@ -65,13 +95,19 @@
       "lines": 63010
     },
     {
+      "name": "overview.json",
+      "type": "file",
+      "size": 15445,
+      "lines": 549
+    },
+    {
       "name": "powerstore_mcp",
       "type": "dir"
     },
     {
       "name": "pyproject.toml",
       "type": "file",
-      "size": 5803,
+      "size": 5811,
       "lines": 226
     },
     {
@@ -99,11 +135,29 @@
       "lines": 58
     },
     {
+      "name": "system_prompt.md",
+      "type": "file",
+      "size": 7980,
+      "lines": 320
+    },
+    {
       "name": "tests",
       "type": "dir"
     }
   ],
   "rootFileSnippets": {
+    "ARCHITECTURE.md": [
+      "# MCP Server Architecture Guide",
+      "",
+      "## Building a Dell Device MCP Server from OpenAPI Specifications",
+      "",
+      "This document provides a comprehensive guide to replicating this MCP server architecture for any Dell device (PowerScale, VxRail, Data Domain, etc.) that exposes a REST API with an OpenAPI specification.",
+      "",
+      "---",
+      "",
+      "## Table of Contents",
+      ""
+    ],
     "CHANGELOG.md": [
       "# Changelog",
       "",
@@ -152,6 +206,18 @@
       "copies of the Software, and to permit persons to whom the Software is",
       "furnished to do so, subject to the following conditions:"
     ],
+    "MANIFEST.in": [
+      "# Include essential files",
+      "include LICENSE",
+      "include README.md",
+      "include CHANGELOG.md",
+      "include CONTRIBUTING.md",
+      "include ARCHITECTURE.md",
+      "include requirements.txt",
+      "include requirements-dev.txt",
+      "",
+      "# Include py.typed marker for PEP 561"
+    ],
     "Makefile": [
       "# =============================================================================",
       "# Dell PowerStore MCP Server - Makefile",
@@ -167,14 +233,26 @@
     "README.md": [
       "# Dell PowerStore MCP Server",
       "",
-      "[![CI](https://github.com/sachdev27/powerstore-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/sachdev27/powerstore-mcp-server/actions/workflows/ci.yml)",
-      "[![Python Version](https://img.shields.io/pypi/pyversions/powerstore-mcp-server.svg)](https://pypi.org/project/powerstore-mcp-server/)",
+      "[![PyPI Version](https://img.shields.io/pypi/v/dell-powerstore-mcp-server.svg)](https://pypi.org/project/dell-powerstore-mcp-server/)",
+      "[![Python Version](https://img.shields.io/pypi/pyversions/dell-powerstore-mcp-server.svg)](https://pypi.org/project/dell-powerstore-mcp-server/)",
       "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
       "[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)",
       "[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)",
       "",
       "A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for Dell PowerStore that automatically generates tools from OpenAPI specifications with a credential-free architecture. Enables AI assistants like Claude and automation platforms like n8n to interact with PowerStore storage arrays.",
       ""
+    ],
+    "doc.log": [
+      "Server Features",
+      "Overview",
+      "",
+      "Copy page",
+      "",
+      "Protocol Revision: 2025-11-25",
+      "Servers provide the fundamental building blocks for adding context to language models via MCP. These primitives enable rich interactions between clients, servers, and language models:",
+      "Prompts: Pre-defined templates or instructions that guide language model interactions",
+      "Resources: Structured data or content that provides additional context to the model",
+      "Tools: Executable functions that allow models to perform actions or retrieve information"
     ],
     "docker-compose.yml": [
       "version: '3.8'",
@@ -199,6 +277,18 @@
       "\"name\" : \"End User License Agreement\",",
       "\"url\" : \"/branding/locales/en-US/eula.txt\"",
       "}"
+    ],
+    "overview.json": [
+      "{",
+      "\"rootFolder\": \"/Users/sachdevs/Projects/mcp-server\",",
+      "\"analyzedAt\": \"2025-12-09T05:20:39.975Z\",",
+      "\"rootStructure\": [",
+      "{",
+      "\"name\": \".github\",",
+      "\"type\": \"dir\"",
+      "},",
+      "{",
+      "\"name\": \".gitignore\","
     ],
     "pyproject.toml": [
       "[build-system]",
@@ -259,9 +349,26 @@
       "echo \"\"",
       "",
       "# Check Python version"
+    ],
+    "system_prompt.md": [
+      "# Dell PowerStore AI Assistant - System Prompt",
+      "",
+      "You are a Dell PowerStore storage administrator assistant. You help users diagnose, monitor, and manage PowerStore storage systems using MCP tools.",
+      "",
+      "## Connection Details",
+      "- **Host:** xxx",
+      "- **Username:** admin",
+      "- **Password:** xxxx",
+      "",
+      "## CRITICAL RULES"
     ]
   },
   "importantFolders": [
+    {
+      "path": "dell_powerstore_mcp_server.egg-info",
+      "category": "backend",
+      "fileCount": 6
+    },
     {
       "path": "tests",
       "category": "tests",
@@ -273,20 +380,20 @@
     "root": "# Dell PowerStore MCP Server"
   },
   "totals": {
-    "numFiles": 38,
-    "numDirs": 10,
-    "totalSizeBytes": 3103492,
-    "totalLinesOfCode": 4512
+    "numFiles": 51,
+    "numDirs": 13,
+    "totalSizeBytes": 3669859,
+    "totalLinesOfCode": 4594
   },
   "fileCategories": {
-    "other": 8,
-    "config": 6,
-    "documentation": 5,
+    "other": 13,
+    "config": 7,
+    "documentation": 12,
     "build": 1,
     "source": 18
   },
   "linesOfCodePerLanguage": {
-    "Python": 4431,
+    "Python": 4513,
     "Shell": 81
   },
   "filesPerLanguage": {
@@ -312,15 +419,20 @@
   "topLevelDirectories": [
     {
       "name": "powerstore_mcp",
-      "numFiles": 9,
-      "totalLoc": 2961,
+      "numFiles": 10,
+      "totalLoc": 3005,
       "dominantLanguage": "Python"
     },
     {
       "name": "tests",
       "numFiles": 7,
-      "totalLoc": 1470,
+      "totalLoc": 1508,
       "dominantLanguage": "Python"
+    },
+    {
+      "name": "dell_powerstore_mcp_server.egg-info",
+      "numFiles": 6,
+      "totalLoc": 0
     },
     {
       "name": "logs",
@@ -333,11 +445,11 @@
       "path": "powerstore_mcp",
       "name": "powerstore_mcp",
       "level": 1,
-      "numFiles": 9,
-      "totalLoc": 2961,
+      "numFiles": 10,
+      "totalLoc": 3005,
       "dominantLanguage": "Python",
       "category": "General",
-      "description": "General module with 9 files (Python)",
+      "description": "General module with 10 files (Python)",
       "subdirectories": []
     },
     {
@@ -345,10 +457,20 @@
       "name": "tests",
       "level": 1,
       "numFiles": 7,
-      "totalLoc": 1470,
+      "totalLoc": 1508,
       "dominantLanguage": "Python",
       "category": "Testing",
       "description": "Testing module with 7 files (Python)",
+      "subdirectories": []
+    },
+    {
+      "path": "dell_powerstore_mcp_server.egg-info",
+      "name": "dell_powerstore_mcp_server.egg-info",
+      "level": 1,
+      "numFiles": 6,
+      "totalLoc": 0,
+      "category": "General",
+      "description": "General module with 6 files",
       "subdirectories": []
     },
     {
@@ -409,14 +531,14 @@
     "total": 8
   },
   "complexity": {
-    "averageFileSize": 118.73684210526316,
+    "averageFileSize": 90.07843137254902,
     "maxFileSize": 25899.827200000003,
     "nestedDepth": 0,
     "estimatedComplexity": "low"
   },
   "gitRepo": {
-    "firstCommitDate": "2025-12-08",
-    "totalCommits": 9,
+    "firstCommitDate": "2025-12-09",
+    "totalCommits": 5,
     "numContributors": 0,
     "currentBranch": "main",
     "remoteUrls": [

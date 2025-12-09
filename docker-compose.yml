@@ -8,8 +8,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: powerstore-mcp-server:latest
-    container_name: powerstore-mcp
+    image: dell-powerstore-mcp-server:latest
+    container_name: dell-powerstore-mcp
     ports:
       - "3000:3000"
     environment:
@@ -50,7 +50,7 @@ services:
 # ==========================================================================
 networks:
   default:
-    name: powerstore-mcp-network
+    name: dell-powerstore-mcp-network
 
 # ==========================================================================
 # Volumes (optional - for persistent storage)

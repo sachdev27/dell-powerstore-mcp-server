@@ -113,7 +113,7 @@ run-http-prod:
 # =============================================================================
 
 docker-build:
-	docker build -t powerstore-mcp-server:latest .
+	docker build -t dell-powerstore-mcp-server:latest .
 
 docker-run:
 	docker-compose up -d

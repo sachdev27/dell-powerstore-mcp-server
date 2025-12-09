@@ -1,6 +1,6 @@
-# Contributing to PowerStore MCP Server
+# Contributing to Dell PowerStore MCP Server
 
-Thank you for your interest in contributing to the PowerStore MCP Server! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to the Dell PowerStore MCP Server! This document provides guidelines and instructions for contributing.
 
 ## 📋 Table of Contents
 
@@ -45,11 +45,11 @@ This project adheres to a Code of Conduct. By participating, you are expected to
 
 ```bash
 # Fork the repository on GitHub, then clone your fork
-git clone https://github.com/YOUR_USERNAME/powerstore-mcp-server.git
-cd powerstore-mcp-server
+git clone https://github.com/sachdev27/dell-powerstore-mcp-server.git
+cd dell-powerstore-mcp-server
 
 # Add the upstream repository
-git remote add upstream https://github.com/sachdev27/powerstore-mcp-server.git
+git remote add upstream https://github.com/sachdev27/dell-powerstore-mcp-server.git
 ```
 
 ### 2. Create Virtual Environment

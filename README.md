@@ -37,8 +37,8 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for De
 
 ```bash
 # Clone and install
-git clone https://github.com/sachdev27/powerstore-mcp-server.git
-cd powerstore-mcp-server
+git clone https://github.com/sachdev27/dell-powerstore-mcp-server.git
+cd dell-powerstore-mcp-server
 pip install -e .
 
 # Run HTTP/SSE server (for n8n)
@@ -60,8 +60,8 @@ pip install dell-powerstore-mcp-server
 
 ```bash
 # Clone the repository
-git clone https://github.com/sachdev27/powerstore-mcp-server.git
-cd powerstore-mcp-server
+git clone https://github.com/sachdev27/dell-powerstore-mcp-server.git
+cd dell-powerstore-mcp-server
 
 # Create virtual environment
 python -m venv .venv
@@ -75,10 +75,10 @@ pip install -e ".[dev]"
 ### Using Docker
 
 ```bash
-docker pull ghcr.io/sachdev27/powerstore-mcp-server:latest
+docker pull ghcr.io/sachdev27/dell-powerstore-mcp-server:latest
 
 # Run with SSE transport
-docker run -p 3000:3000 ghcr.io/sachdev27/powerstore-mcp-server:latest
+docker run -p 3000:3000 ghcr.io/sachdev27/dell-powerstore-mcp-server:latest
 ```
 
 ### Requirements
@@ -304,8 +304,8 @@ powerstore_mcp/
 
 ```bash
 # Clone and install with dev dependencies
-git clone https://github.com/sachdev27/powerstore-mcp-server.git
-cd powerstore-mcp-server
+git clone https://github.com/sachdev27/dell-powerstore-mcp-server.git
+cd dell-powerstore-mcp-server
 pip install -e ".[dev]"
 
 # Install pre-commit hooks
@@ -348,7 +348,7 @@ bandit -r powerstore_mcp
 python -m build
 
 # Build Docker image
-docker build -t powerstore-mcp-server .
+docker build -t dell-powerstore-mcp-server .
 ```
 
 ## 🤝 Contributing
