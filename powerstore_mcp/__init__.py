@@ -35,7 +35,7 @@ Attributes:
     __author__: Package author/maintainer.
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "sachdev27"
 __all__ = [
     "__version__",
